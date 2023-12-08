@@ -1,0 +1,446 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    vertical-align: bottom;
+}
+
+/* 共通 */
+@font-face {
+    font-family: "myfont";
+    src: url(./font/din1451alt.ttf) format("truetype");  
+  }
+
+@font-face{
+  font-family: "myfont-nm";
+  src: url(./font/OPTITimes-Roman.otf) format("opentype");
+}
+
+@font-face{
+  font-family: "myfont-nm-#";
+  src: url(./font/OPTITimesRoman-Italic.otf) format("opentype");
+}
+
+a,div,p {
+    font-family: "myfont", serif;
+  }
+
+a{
+  text-decoration: none;
+  color: #000;
+}
+
+li{
+  list-style-type: none;
+}
+
+html{
+    scroll-behavior: smooth;
+  }
+
+body{
+    background: url(./img/bg.jpg);
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+  .mainblur{
+    filter: blur(8px);
+  }
+  
+  /*========= ナビゲーションのためのCSS ===============*/
+  
+  #g-nav{
+      /*position:fixed;にし、z-indexの数値を小さくして最背面へ*/
+      position:fixed;
+    z-index: -1;
+    opacity: 0;/*はじめは透過0*/
+      /*ナビの位置と形状*/
+    top:0;
+    width:100%;
+      height: 100vh;/*ナビの高さ*/
+    background:rgba(255,255,255,0.4);/*背景を少し透過させる*/
+      /*動き*/
+    transition: all 0.5s;
+  }
+  
+  /*アクティブクラスがついたら透過なしにして最前面へ*/
+  #g-nav.panelactive{
+    opacity: 1;
+    z-index:999;
+  }
+  
+  /*ナビゲーション*/
+  #g-nav ul {
+      display: none;/*はじめは非表示*/
+      /*ナビゲーション天地中央揃え*/
+      position: absolute;
+      z-index: 999;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+  }
+  
+  #g-nav.panelactive ul {
+      display: block;
+  }
+  /*リストのレイアウト設定*/
+  
+  #g-nav li{
+      text-align: center; 
+  }
+  
+  #g-nav li a{
+    color: #000;
+    padding: 25px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+  }
+  
+  /*========= ボタンのためのCSS ===============*/
+  .openbtn1{
+    position:fixed;
+    z-index: 9999;/*ボタンを最前面に*/
+    top: 35px;
+    right: 35px;
+    cursor: pointer;
+    width: 50px;
+    height:50px;
+  }
+    
+  /*×に変化*/  
+  .openbtn1 span{
+      display: inline-block;
+      transition: all .4s;
+      position: absolute;
+      left: 14px;
+      height: 2px;
+      border-radius: 2px;
+    background-color: #705c5c;
+      width: 50%;
+    }
+  
+  .openbtn1 span:nth-of-type(1) {
+    top:15px; 
+  }
+  
+  .openbtn1 span:nth-of-type(2) {
+    top:23px;
+  }
+  
+  .openbtn1 span:nth-of-type(3) {
+    top:31px;
+  }
+  
+  .openbtn1.active span:nth-of-type(1) {
+      top: 18px;
+      left: 18px;
+      transform: translateY(6px) rotate(-45deg);
+      width: 40%;
+  }
+  
+  .openbtn1.active span:nth-of-type(2) {
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 40%;
+  }
+  
+#main{
+    width: 100%;
+    height: 80vh;
+    background: url(./img/pf_name_s.png);
+    background-position: center;
+    background-size: 70%;
+    opacity: .8;
+    background-repeat: no-repeat;
+    margin: 4rem 0 6rem 0;
+}
+
+/* スクロールマーク */
+.scroll{
+    position: absolute;
+    right: 35px;
+    bottom: 15%;
+    writing-mode: vertical-rl;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scroll span{
+    width: 1px;
+    height: 60px;
+    background: #000;
+    margin: 10px 0px;
+}
+
+.scroll_anime{
+    animation-name: scrollanime;
+    animation-fill-mode:backwards;/*最初の状態に戻る*/
+    animation-duration:1.6s;/*1.6秒で*/
+    animation-iteration-count:infinite;/*繰り返す*/
+    animation-timing-function:ease;/*最初と最後が緩やかに動く*/
+    animation-delay: 0.5s;
+    animation-direction:normal;
+}
+
+@keyframes scrollanime{
+    0%{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    30%{
+      opacity: .7;
+  }
+
+    100%{
+        opacity: 1;
+        transform: translateY(50px);
+    }
+    }
+
+
+/* works */
+
+#works{
+  width: 100%;
+  padding: 40px 0;
+}
+
+.main-title-works{
+  width: 200px;
+  height: 60px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 120px auto;
+  opacity: .8;
+}
+
+.works_area{
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+}
+
+.works_area::after{
+  content:"";
+  display: block;
+  width:397px;
+}
+
+/* フェードイン */
+.fadeUpTrigger{
+  opacity: 0;
+  }
+
+  
+.fadeUp {
+  animation-name: fadeUpAnime;
+  animation-duration:2s;
+  animation-fill-mode:forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+from {
+  opacity: 0;
+  transform: translateY(100px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+/* フェードインおわり */
+
+.top-title-num{
+  font-family:"myfont-nm";
+  font-size: 1.5rem;
+}
+
+.top-title-num span{
+  font-family:"myfont-nm-#";
+  font-size: 1.5rem;
+}
+
+
+.top-name-set{
+  transition: transform .6s ease; /* ゆっくり変化させる */
+  margin: 50px 50px;
+  position: relative;
+}
+
+.bc-line{
+  width: .8px;
+  height: 160%;
+  background: #000;
+  margin: 0 auto;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+}
+
+.top-name-set:hover{
+  transform: scale(1.1);
+}
+
+
+.top-name-in{
+  position: relative;
+  width: 297px;
+  height: 157px;
+}
+
+.top-title-num,
+.top-title-num span{
+  position: absolute;
+}
+
+.top-title-num{
+  position: absolute;
+  top: -37px;
+  right: 0;
+}
+
+.top-title-num span{
+  top: 0px;
+  right: 28px;
+  font-family: "myfont-nm-#";
+  font-size: .9rem;
+}
+
+.top-title{
+  margin-top: 10px;
+}
+
+.top-contents{
+  color: #616161;
+}
+/* content */
+#content{
+  margin-top: 200px;
+}
+
+.f-area{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.f-box{
+  height: 350px;
+  padding: 70px;
+}
+
+.f-box:nth-child(1),
+.f-box:nth-child(3){
+  width: 33%;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.f-box:nth-child(2){
+  width: 34%;
+  border: 1px solid #000;
+}
+
+.f-box li a,
+.f-box li p{
+  display: block;
+  padding: 10px 0;
+  text-align: justify;
+}
+
+
+/* ボタンのcss */
+.backbtn{
+  position: fixed;
+  bottom: 70px;
+  right: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% ;
+  z-index: 999;
+  display: none;
+  background: #333;
+  padding: 17px;
+}
+
+.backbtn_box{
+  text-decoration: none;
+}
+
+.backbtn_box p{
+  text-align: center;
+  color: rgb(184, 184, 184);
+  position: absolute;
+  top: 21px;
+  right: 16px;
+}
+
+/*  */
+.fadein{
+  animation-name: fadeinAnime;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  display: block;
+  transition: all 5s;
+}
+
+@keyframes fadeinAnime{
+  from{
+      opacity: 0;
+      transform: translateX(0);
+  }
+
+  to{
+      opacity: 1;
+      transform: translateX(-60px);
+  }
+}
+
+/* footer */
+
+footer{
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p{
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: "myfont-nm";
+}
+
+/* レスポンシブ対応 */
+@media screen and (min-width:320px) and (max-width:700px){
+  .f-area {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+
+.f-box:nth-child(1),
+.f-box:nth-child(3){
+  width: 80%;
+}
+
+.f-box:nth-child(2){
+  width: 80%;
+  border: none;
+}
+}
+
