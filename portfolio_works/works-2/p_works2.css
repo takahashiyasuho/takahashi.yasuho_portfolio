@@ -362,23 +362,12 @@ footer{
 }
 
 /* レスポンシブ */
-@media screen and (min-width:320px) and (max-width:1000px){
-  .works3 img,
-  .content-area{
-    width: 60%;
-  }
-
-  .w3-textbox {
-    margin: 60px 20%;
-  }
-}
-
-
 @media screen and (min-width:320px) and (max-width:600px){
   #g-nav {
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 80px;
     z-index: 99;
     position: fixed;
     right: 0px;
@@ -395,9 +384,9 @@ footer{
 }
 
 #g-nav li {
-  margin-top: 40px;
   font-family: "myfont-nm";
   writing-mode: horizontal-tb;
+  margin-top: 0px;
 }
 
 #g-nav li a{
@@ -415,28 +404,37 @@ footer{
     padding: 80px;
     flex-direction: row;
 }
+
+#detail-box, #detail-box-2,#design-main {
+  margin: 0 auto;
+  padding-top: 120px;
 }
 
-@media screen and (min-width:320px) and (max-width:380px){
+.works3 {
+  margin: 160px 0px 0px 0px;
+}
+
+.design-line-l, .design-line-r{
+  width: 48%;
+}
+}
+
+@media screen and (min-width:320px) and (max-width:400px){
+  .w3-textbox {
+    margin: 80px 10%;
+}
   .news-list {
     display: flex;
     flex-direction: column;
 }
 
-.w3-textbox {
-  margin: 60px 10%;
-}
-
 .works3 img,
 .content-area,
+.contents-site,
 #detail-box,
-#detail-box-2{
+#detail-box-2,
+#design-main{
   width: 80%;
-}
-
-#detail-box,
-#detail-box-2{
-  margin: 80px auto;
 }
 
 .news-list dd,
@@ -461,5 +459,17 @@ width: 100%;
 .arrow_animation_button, .arrow_animation_button-back, .arrow_animation_button-next {
   text-align: center;
   padding: 30px;
+}
+
+.arrow_animation_button-next::after {
+  top: 0;
+  bottom: 20%;
+  right: 5px;
+}
+
+.arrow_animation_button-back::before {
+  top: 0;
+  bottom: 20%;
+  left: 5px;
 }
 }
